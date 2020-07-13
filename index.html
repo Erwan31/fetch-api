@@ -46,7 +46,7 @@
         });
 
         async function catchImages(){
-            for( let element in filenames){
+            for( let element of filenames){
                 const response = await fetch(element);
                 const image = await response.blob();
                 const img = document.createElement('img');
