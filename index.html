@@ -28,8 +28,31 @@
 
         async function catchText() {
             const response = await fetch('blabla.txt');
-            const blob = await response.text();
-            document.getElementById('lorem').textContent = blob;
+            const lorem = await response.text();
+            document.getElementById('lorem').textContent = lorem;
+        }
+
+
+/* 1.3 */
+        const filenames = [
+            'images/max.jpg',
+            'images/s6.jpg',
+            'images/th.jpg'
+        ];
+
+        catchImages().catch( error => {
+            console.log('images fetch unsuccessful');
+            console.error(error);
+        });
+
+        async function catchImages(){
+            for( let element in filenames){
+                const response = await fetch(element);
+                const image = await response.blob();
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(image);
+                document.body.append(img);
+            }
         }
     </script>
 </body>
