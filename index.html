@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Train - Fetch API</title>
+</head>
+<body>
+    <img src="" alt="" id="rainbow">
+    <p id="lorem"></p>
+    <script>
+
+        catchRainbow().catch( error => {
+            console.error(error);
+        });
+
+        async function catchRainbow() {
+            const response = await fetch('rainbow.png');
+            const blob = await response.blob();
+            document.getElementById('rainbow').src = URL.createObjectURL(blob);
+        }
+
+/* 1.2 */
+        catchText().catch( error => {
+            console.log('text fetch unsuccessful');
+            console.error(error);
+        });
+
+        async function catchText() {
+            const response = await fetch('blabla.txt');
+            const blob = await response.text();
+            document.getElementById('lorem').textContent = blob;
+        }
+    </script>
+</body>
+</html>
